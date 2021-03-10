@@ -1,0 +1,32 @@
+<Project>
+    <PropertyGroup>
+        <Authors>R&amp;D Team</Authors>
+        <Company>Nexcel Solutions</Company>
+        <Copyright>2018 Nexdev</Copyright>
+        <PackageProjectUrl>https://gitlab.nexdev.net/infrastructure/fanex-session-state-provider</PackageProjectUrl>
+        <RepositoryUrl>https://gitlab.nexdev.net/infrastructure/fanex-session-state-provider</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageReleaseNotes>https://gitlab.nexdev.net/infrastructure/fanex-session-state-provider/CHANGELOG.md</PackageReleaseNotes>
+        <PackageIconUrl>https://gitlab.nexdev.net/uploads/-/system/project/avatar/100/new-idea.png</PackageIconUrl>
+        <DefaultLanguage>en-US</DefaultLanguage>
+        <LangVersion>latest</LangVersion>
+        <IncludeSymbols>false</IncludeSymbols>
+        <Version>0.0.1-beta1</Version>
+    </PropertyGroup>
+    <PropertyGroup>
+        <NoWarn>AD0001</NoWarn>
+        <Features>IOperation</Features>
+        <CodeAnalysisRuleSet>$(SolutionDir)\.sonarlint\Fanex.SessionStateProviderCSharp.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.17.0.26580">
+            <PrivateAssets>All</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.321">
+            <PrivateAssets>All</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+        <AdditionalFiles Include="$(SolutionDir)\.sonarlint\fanex.sessionstateprovider\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+    </ItemGroup>
+</Project>
