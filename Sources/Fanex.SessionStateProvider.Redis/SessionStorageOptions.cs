@@ -55,7 +55,7 @@
 
         private static TimeSpan GetSessionTimeout()
         {
-            const string sessionStateSectionName = "system.web/httpRuntime";
+            const string sessionStateSectionName = "system.web/sessionState";
 
             var sessionStateSection = ConfigurationManager.GetSection(sessionStateSectionName) as SessionStateSection;
 

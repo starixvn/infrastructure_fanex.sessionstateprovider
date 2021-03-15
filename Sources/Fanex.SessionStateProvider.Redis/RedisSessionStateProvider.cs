@@ -74,6 +74,11 @@
 
         public override void EndRequest(HttpContext context)
         {
+            if (_sessionId == null || _lockId == null)
+            {
+                return;
+            }
+
             ReleaseLock(context, _sessionId, _lockId);
             _sessionKeySet = null;
         }

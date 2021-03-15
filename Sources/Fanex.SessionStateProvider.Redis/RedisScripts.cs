@@ -23,9 +23,9 @@
               return 1";
 
         public const string WriteData =
-            @"redis.call('HSET', KEYS[1], unpack(ARGV, 3, ARGV[1]))
+            @"redis.call('HMSET', KEYS[1], unpack(ARGV, 4, ARGV[1]))
               redis.call('EXPIRE', KEYS[1], ARGV[2])
-              redis.call('HSET', KEYS[2], 'SessionTimeout', ARGV[2], 'SessionStateActions', ARGV[3])
+              redis.call('HMSET', KEYS[2], 'SessionTimeout', ARGV[2], 'SessionStateActions', ARGV[3])
               redis.call('EXPIRE', KEYS[2], ARGV[2])
 
               return 1";
@@ -48,7 +48,7 @@
               result[1] = lockId
               result[2] = sessionData
 
-              local internalData = redis.call('HGET', KEYS[3], 'SessionTimeout', 'SessionStateActions')
+              local internalData = redis.call('HMGET', KEYS[3], 'SessionTimeout', 'SessionStateActions')
               local sessionTimeout = internalData[1]
               local sessionStateActions = internalData[2]
 
@@ -77,7 +77,7 @@
                   locked = true
               end
 
-              local internalData = redis.call('HGET', KEYS[3], 'SessionTimeout', 'SessionStateActions')
+              local internalData = redis.call('HMGET', KEYS[3], 'SessionTimeout', 'SessionStateActions')
               local sessionTimeout = internalData[1]
               local sessionStateActions = internalData[2]
 
@@ -130,11 +130,11 @@
                   end
 
                   if tonumber(ARGV[7]) ~= 0 then
-                      redis.call('HSET', KEYS[2], unpack(ARGV, ARGV[8], ARGV[9]))
+                      redis.call('HMSET', KEYS[2], unpack(ARGV, ARGV[8], ARGV[9]))
                   end
 
                   redis.call('EXPIRE', KEYS[2], ARGV[2])
-                  redis.call('HSET', KEYS[3], 'SessionTimeout', ARGV[2], 'SessionStateActions', ARGV[3])
+                  redis.call('HMSET', KEYS[3], 'SessionTimeout', ARGV[2], 'SessionStateActions', ARGV[3])
                   redis.call('EXPIRE', KEYS[3], ARGV[2])
                   redis.call('DEL', KEYS[1])
               end
