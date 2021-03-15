@@ -1,0 +1,64 @@
+﻿@using Fanex.SessionStateProvider.Redis.Example.Models
+@{
+    ViewBag.Title = "Home Page";
+}
+@model Account
+
+<div class="row margin-top-50">
+    <div class="col-sm-6">
+        <h3>Session ID: @Context.Request.Cookies["ASP.NET_SessionId"].Value</h3>
+        <h4>First Name: @Session["FirstName"]</h4>
+        <h4>Middle Name: @Session["MiddleName"]</h4>
+        <h4>Last Name: @Session["LastName"]</h4>
+        <h4>Username: @Session["Username"]</h4>
+        <h4>Email: @Session["Email"]</h4>
+        <h4>Phone: @Session["Phone"]</h4>
+        <h4>Address: @Session["Address"]</h4>
+        <h4>City: @Session["City"]</h4>
+        <h4>Organization: @Session["Organization"]</h4>
+        <h4>Remarks: @Session["Remarks"]</h4>
+        @using (Html.BeginForm("AbandonSession", "Home", FormMethod.Post))
+        {
+            <button type="submit" class="btn btn-primary">Abandon Session</button>
+        }
+    </div>
+    <div class="well col-sm-6">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "input-form" }))
+        {
+            <h3>Session Data</h3>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control floating-label", placeholder = "First Name", autocomplete = "off" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control floating-label", placeholder = "Middle Name", autocomplete = "off" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control floating-label", placeholder = "Last Name", autocomplete = "off" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-control floating-label", placeholder = "Username", autocomplete = "off" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control floating-label", placeholder = "Email", autocomplete = "off" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control floating-label", placeholder = "Phone", autocomplete = "off" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Address, new { @class = "form-control floating-label", placeholder = "Address", autocomplete = "off" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.City, new { @class = "form-control floating-label", placeholder = "City", autocomplete = "off" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Organization, new { @class = "form-control floating-label", placeholder = "Organization", autocomplete = "off" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Remarks, new { @class = "form-control floating-label", placeholder = "Remarks", autocomplete = "off" })
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        }
+    </div>
+</div>
