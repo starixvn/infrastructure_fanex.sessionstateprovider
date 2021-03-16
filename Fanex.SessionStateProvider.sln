@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.SessionStateProvider.Redis.Example", "Samples\Fanex.SessionStateProvider.Redis.Example\Fanex.SessionStateProvider.Redis.Example.csproj", "{9A9052B8-7292-4FBA-8E18-3E443BB5D944}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.SessionStateProvider.RedisCore", "Sources\Fanex.SessionStateProvider.RedisCore\Fanex.SessionStateProvider.RedisCore.csproj", "{655253E6-C7A4-4526-AE59-527EC6A330FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{9A9052B8-7292-4FBA-8E18-3E443BB5D944}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A9052B8-7292-4FBA-8E18-3E443BB5D944}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A9052B8-7292-4FBA-8E18-3E443BB5D944}.Release|Any CPU.Build.0 = Release|Any CPU
+		{655253E6-C7A4-4526-AE59-527EC6A330FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{655253E6-C7A4-4526-AE59-527EC6A330FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{655253E6-C7A4-4526-AE59-527EC6A330FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{655253E6-C7A4-4526-AE59-527EC6A330FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -40,6 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0E921051-5C74-4AF8-B9C0-A561158810AC} = {A701A1BB-5E45-4884-9C94-8AB1D22A5E2C}
 		{9A9052B8-7292-4FBA-8E18-3E443BB5D944} = {51AE1E9C-2C06-4C96-ADBE-15D7302F6A00}
+		{655253E6-C7A4-4526-AE59-527EC6A330FB} = {A701A1BB-5E45-4884-9C94-8AB1D22A5E2C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4A3EEE8D-436B-4748-9E85-F6244A29ED21}
