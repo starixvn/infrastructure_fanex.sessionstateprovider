@@ -4,8 +4,8 @@
 
     public static class RedisStorageManager
     {
-        private static readonly object OptionsCreationLock = new();
-        private static readonly object StorageCreationLock = new();
+        private static readonly object _optionsCreationLock = new();
+        private static readonly object _storageCreationLock = new();
 
         public static SessionStorageOptions Options { get; private set; }
 
@@ -15,7 +15,7 @@
         {
             if (Options == null)
             {
-                lock (OptionsCreationLock)
+                lock (_optionsCreationLock)
                 {
                     Options ??= SessionStorageOptions.TryParse(config);
                 }
@@ -23,7 +23,7 @@
 
             if (Storage == null)
             {
-                lock (StorageCreationLock)
+                lock (_storageCreationLock)
                 {
                     Storage ??= new RedisSessionStorage(Options);
                 }

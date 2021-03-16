@@ -10,7 +10,7 @@
         private const int FromMinuteToSeconds = 60;
 
 #pragma warning disable S3962 // "static readonly" constants should be "const" instead
-        private static readonly string LastExceptionId = $"{nameof(RedisSessionStateProvider)}_LastException";
+        private static readonly string _lastExceptionId = $"{nameof(RedisSessionStateProvider)}_LastException";
 #pragma warning restore S3962 // "static readonly" constants should be "const" instead
 
         private SessionStorageOptions _options;
@@ -21,13 +21,13 @@
 
         public static Exception LastException
         {
-            get => HttpContext.Current != null ? HttpContext.Current.Items[LastExceptionId] as Exception : null;
+            get => HttpContext.Current != null ? HttpContext.Current.Items[_lastExceptionId] as Exception : null;
 
             set
             {
                 if (HttpContext.Current != null)
                 {
-                    HttpContext.Current.Items[LastExceptionId] = value;
+                    HttpContext.Current.Items[_lastExceptionId] = value;
                 }
             }
         }

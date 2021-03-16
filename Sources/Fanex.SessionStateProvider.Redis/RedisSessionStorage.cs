@@ -109,7 +109,7 @@
         {
             const int timeToSleepFactor = 2;
 
-            var startTime = DateTime.Now;
+            var startTime = DateTimeOffset.UtcNow;
             var timeToSleepBeforeNextRetryInMiliseconds = 20;
 
             Connect();
@@ -122,7 +122,7 @@
                 }
                 catch (Exception generallyCatchedException)
                 {
-                    var passedTime = DateTime.Now - startTime;
+                    var passedTime = DateTimeOffset.UtcNow - startTime;
 
                     if (_retryTimeout < passedTime)
                     {

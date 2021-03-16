@@ -134,10 +134,10 @@
             InnerCollection.RemoveAt(index);
         }
 
-        internal void SetDataWithoutMarkingModifiedKey(string name, object value)
+        internal void SetDataWithoutMarkingModified(string name, object value)
             => InnerCollection[name] = value;
 
-        internal object GetDataWithoutMarkingModifiedKey(string name)
+        internal object GetDataWithoutMarkingModified(string name)
             => InnerCollection[name];
 
         public override IEnumerator GetEnumerator()

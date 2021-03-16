@@ -10,7 +10,7 @@
             var lockId = (long?)sessionStoredInRedis[0];
             var rawData = (RedisResult[])sessionStoredInRedis[1];
             var sessionTimeout = (int?)sessionStoredInRedis[2];
-            var actions = (SessionStateActions)(int)sessionStoredInRedis[3];
+            var actions = (SessionStateActions)((int?)sessionStoredInRedis[3] ?? 0);
             var locked = (bool)sessionStoredInRedis[4];
             var sessionData = !locked ? DeserializeSessionData(rawData, serializer) : null;
 
@@ -39,7 +39,7 @@
 
                     if (!string.IsNullOrEmpty(key))
                     {
-                        sessionData.SetDataWithoutMarkingModifiedKey(key, serializer.Deserialize((byte[])value));
+                        sessionData.SetDataWithoutMarkingModified(key, serializer.Deserialize((byte[])value));
                     }
 
                     counter += rawSessionItemSplittingStep;

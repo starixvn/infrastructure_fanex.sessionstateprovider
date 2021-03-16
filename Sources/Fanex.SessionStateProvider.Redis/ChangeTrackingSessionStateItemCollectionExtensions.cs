@@ -14,7 +14,7 @@
             foreach (string key in sessionData.Keys)
             {
                 result.Add(key);
-                result.Add(serializer.Serialize(sessionData.GetDataWithoutMarkingModifiedKey(key)));
+                result.Add(serializer.Serialize(sessionData.GetDataWithoutMarkingModified(key)));
             }
 
             return result;
@@ -29,7 +29,7 @@
             foreach (var key in sessionData.ModifiedKeys)
             {
                 result.Add(key);
-                result.Add(serializer.Serialize(sessionData.GetDataWithoutMarkingModifiedKey(key)));
+                result.Add(serializer.Serialize(sessionData.GetDataWithoutMarkingModified(key)));
             }
 
             return (sessionData.ModifiedKeys.Count, result);
