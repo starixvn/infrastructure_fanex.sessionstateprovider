@@ -8,7 +8,7 @@
 
     public static class SessionServiceCollectionExtensions
     {
-        public static IServiceCollection AddSession(this IServiceCollection services)
+        public static IServiceCollection AddRedisSession(this IServiceCollection services)
         {
             if (services == null)
             {
@@ -22,7 +22,7 @@
             return services;
         }
 
-        public static IServiceCollection AddSession(
+        public static IServiceCollection AddRedisSession(
             this IServiceCollection services,
             Action<RedisCacheOptions> configureRedis,
             Action<SessionOptions> configureSession)
@@ -44,7 +44,7 @@
 
             services.Configure(configureRedis);
             services.Configure(configureSession);
-            services.AddSession();
+            services.AddRedisSession();
 
             return services;
         }

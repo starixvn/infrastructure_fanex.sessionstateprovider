@@ -33,7 +33,7 @@
             ILoggerFactory loggerFactory,
             bool isNewSessionKey)
         {
-            if (!string.IsNullOrEmpty(sessionKey))
+            if (string.IsNullOrEmpty(sessionKey))
             {
                 throw new ArgumentException("Argument cannot be null or empty string.", nameof(sessionKey));
             }

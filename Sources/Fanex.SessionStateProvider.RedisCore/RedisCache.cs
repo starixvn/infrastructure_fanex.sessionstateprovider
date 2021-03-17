@@ -45,7 +45,7 @@
             TimeSpan sessionTimeout,
             CancellationToken cancellationToken = default)
             => EvalAsync(
-                RedisCommand.CreateSetCommand(new SessionKeySet(_options.ApplicationName, key), store, sessionTimeout.Seconds),
+                RedisCommand.CreateSetCommand(new SessionKeySet(_options.ApplicationName, key), store, (int)sessionTimeout.TotalSeconds),
                 cancellationToken);
 
         private RedisResult Eval(RedisCommand command)
