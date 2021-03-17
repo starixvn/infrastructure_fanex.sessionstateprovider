@@ -23,7 +23,6 @@
         private bool _loaded;
         private bool _isAvailable;
         private bool _isModified;
-        private object _lockId;
 
         public RedisSession(
             ICache cache,
@@ -127,7 +126,6 @@
                 accessingCacheTokenSource.Token.ThrowIfCancellationRequested();
                 await _cache.SetAsync(
                     _sessionKey,
-                    _lockId,
                     _store,
                     _idleTimeout,
                     accessingCacheTokenSource.Token);
@@ -158,9 +156,9 @@
             {
                 cancellationTokenSource.Token.ThrowIfCancellationRequested();
 
-                var (lockId, newStore) = await _cache.GetAsync(_sessionKey, cancellationTokenSource.Token);
+                var storedData = await _cache.GetAsync(_sessionKey, cancellationTokenSource.Token);
 
-                if (newStore == null)
+                if (storedData == null)
                 {
                     _logger.SessionStarted(_sessionKey, Id);
                 }
@@ -211,11 +209,10 @@
             {
                 accessingCacheTokenSource.Token.ThrowIfCancellationRequested();
 
-                var (lockId, newStore) = await _cache.GetAsync(_sessionKey, accessingCacheTokenSource.Token);
+                var newStore = await _cache.GetAsync(_sessionKey, accessingCacheTokenSource.Token);
 
                 if (newStore != null)
                 {
-                    _lockId = lockId;
                     _store = newStore;
                 }
                 else
@@ -254,11 +251,10 @@
 
             try
             {
-                var (lockId, newStore) = _cache.Get(_sessionKey);
+                var newStore = _cache.Get(_sessionKey);
 
                 if (newStore != null)
                 {
-                    _lockId = lockId;
                     _store = newStore;
                 }
                 else
@@ -277,7 +273,6 @@
 
                 _isAvailable = false;
                 _sessionId = string.Empty;
-                _lockId = null;
                 _store = new NoOpLocalStore();
             }
             finally

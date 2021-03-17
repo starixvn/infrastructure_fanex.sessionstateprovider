@@ -6,7 +6,7 @@
             @"local dataExists = redis.call('EXISTS', KEYS[1])
 
               if dataExists == 0 then
-                  return 1;
+                  return 1
               end
 
               local sessionTimeout = redis.call('HGET', KEYS[2], 'SessionTimeout')

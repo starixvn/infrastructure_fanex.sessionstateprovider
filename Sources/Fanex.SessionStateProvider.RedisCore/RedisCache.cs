@@ -17,7 +17,7 @@
         public RedisCache(RedisCacheOptions options)
             => _options = options ?? throw new ArgumentNullException(nameof(options));
 
-        public (object LockId, ILocalStore Store) Get(string key)
+        public ILocalStore Get(string key)
         {
             var command = RedisCommand.CreateGetCommand(new SessionKeySet(_options.ApplicationName, key));
             var rawResult = (RedisResult[])Eval(command);
@@ -25,10 +25,10 @@
             return rawResult.TryParseToLocalStore();
         }
 
-        public async Task<(object LockId, ILocalStore Store)> GetAsync(string key, CancellationToken cancellationToken = default)
+        public async Task<ILocalStore> GetAsync(string key, CancellationToken cancellationToken = default)
         {
             var command = RedisCommand.CreateGetCommand(new SessionKeySet(_options.ApplicationName, key));
-            var rawResult = (RedisResult[])await EvalAsync(command, cancellationToken);
+            var rawResult = (RedisResult[])await EvalAsync(command, cancellationToken).ConfigureAwait(false);
 
             return rawResult.TryParseToLocalStore();
         }
@@ -38,44 +38,14 @@
                 RedisCommand.CreateRefreshSessionTimeoutCommand(new SessionKeySet(_options.ApplicationName, key)),
                 cancellationToken);
 
-        public async Task SetAsync(
+        public Task SetAsync(
             string key,
-            object lockId,
             ILocalStore store,
             TimeSpan sessionTimeout,
             CancellationToken cancellationToken = default)
-        {
-            const int timeToSleepFactor = 2;
-
-            var command = RedisCommand.CreateSetCommand(
-                new SessionKeySet(_options.ApplicationName, key),
-                lockId,
-                store,
-                sessionTimeout.Seconds);
-            var startTime = DateTimeOffset.UtcNow;
-            var timeToSleepBeforeNextRetryInMiliseconds = 20;
-
-            while (true)
-            {
-                var successfullySyncData = (bool)await EvalAsync(command, cancellationToken);
-                var passedTime = DateTimeOffset.UtcNow - startTime;
-
-                if (successfullySyncData || passedTime > _options.RetryTimeout)
-                {
-                    return;
-                }
-
-                var remainingTimeout = (int)(_options.RetryTimeout.TotalMilliseconds - passedTime.TotalMilliseconds);
-
-                if (remainingTimeout < timeToSleepBeforeNextRetryInMiliseconds)
-                {
-                    timeToSleepBeforeNextRetryInMiliseconds = remainingTimeout;
-                }
-
-                await Task.Delay(timeToSleepBeforeNextRetryInMiliseconds);
-                timeToSleepBeforeNextRetryInMiliseconds *= timeToSleepFactor;
-            }
-        }
+            => EvalAsync(
+                RedisCommand.CreateSetCommand(new SessionKeySet(_options.ApplicationName, key), store, sessionTimeout.Seconds),
+                cancellationToken);
 
         private RedisResult Eval(RedisCommand command)
         {
@@ -96,9 +66,10 @@
                 return default;
             }
 
-            await ConnectAsync(cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
+            await ConnectAsync(cancellationToken).ConfigureAwait(false);
 
-            return await _database.ScriptEvaluateAsync(command.Script, command.Keys, command.Values);
+            return await _database.ScriptEvaluateAsync(command.Script, command.Keys, command.Values).ConfigureAwait(false);
         }
 
         private void Connect()
@@ -131,13 +102,14 @@
                 return;
             }
 
-            await _connectionLock.WaitAsync(cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
+            await _connectionLock.WaitAsync(cancellationToken).ConfigureAwait(false);
 
             try
             {
                 if (_database == null)
                 {
-                    _connection = await ConnectionMultiplexer.ConnectAsync(_options.ConnectionString);
+                    _connection = await ConnectionMultiplexer.ConnectAsync(_options.ConnectionString).ConfigureAwait(false);
                     _database = _connection.GetDatabase();
                 }
             }

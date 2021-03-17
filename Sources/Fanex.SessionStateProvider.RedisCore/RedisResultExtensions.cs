@@ -4,16 +4,7 @@
 
     public static class RedisResultExtensions
     {
-        public static (object LockId, ILocalStore Store) TryParseToLocalStore(this RedisResult[] sessionStoredInRedis)
-        {
-            var lockId = (long?)sessionStoredInRedis[0];
-            var rawData = (RedisResult[])sessionStoredInRedis[1];
-            var sessionData = DeserializeSessionData(rawData);
-
-            return (lockId, sessionData);
-        }
-
-        private static ILocalStore DeserializeSessionData(RedisResult[] rawSession)
+        public static ILocalStore TryParseToLocalStore(this RedisResult[] rawSession)
         {
             const int rawSessionItemSplittingStep = 2;
 
