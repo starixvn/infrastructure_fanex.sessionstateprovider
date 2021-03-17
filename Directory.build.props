@@ -2,11 +2,11 @@
     <PropertyGroup>
         <Authors>R&amp;D Team</Authors>
         <Company>Nexcel Solutions</Company>
-        <Copyright>2018 Nexdev</Copyright>
-        <PackageProjectUrl>https://gitlab.nexdev.net/infrastructure/fanex-session-state-provider</PackageProjectUrl>
-        <RepositoryUrl>https://gitlab.nexdev.net/infrastructure/fanex-session-state-provider</RepositoryUrl>
+        <Copyright>2021 Nexdev</Copyright>
+        <PackageProjectUrl>https://gitlab.nexdev.net/infrastructure/fanex.sessionstateprovider</PackageProjectUrl>
+        <RepositoryUrl>https://gitlab.nexdev.net/infrastructure/fanex.sessionstateprovider</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>https://gitlab.nexdev.net/infrastructure/fanex-session-state-provider/CHANGELOG.md</PackageReleaseNotes>
+        <PackageReleaseNotes>https://gitlab.nexdev.net/infrastructure/fanex.sessionstateprovider/CHANGELOG.md</PackageReleaseNotes>
         <PackageIconUrl>https://gitlab.nexdev.net/uploads/-/system/project/avatar/100/new-idea.png</PackageIconUrl>
         <DefaultLanguage>en-US</DefaultLanguage>
         <LangVersion>latest</LangVersion>
