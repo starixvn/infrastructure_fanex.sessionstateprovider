@@ -22,19 +22,28 @@
             return services;
         }
 
-        public static IServiceCollection AddSession(this IServiceCollection services, Action<SessionOptions> configure)
+        public static IServiceCollection AddSession(
+            this IServiceCollection services,
+            Action<RedisCacheOptions> configureRedis,
+            Action<SessionOptions> configureSession)
         {
             if (services == null)
             {
                 throw new ArgumentNullException(nameof(services));
             }
 
-            if (configure == null)
+            if (configureRedis == null)
             {
-                throw new ArgumentNullException(nameof(configure));
+                throw new ArgumentNullException(nameof(configureRedis));
             }
 
-            services.Configure(configure);
+            if (configureSession == null)
+            {
+                throw new ArgumentNullException(nameof(configureSession));
+            }
+
+            services.Configure(configureRedis);
+            services.Configure(configureSession);
             services.AddSession();
 
             return services;

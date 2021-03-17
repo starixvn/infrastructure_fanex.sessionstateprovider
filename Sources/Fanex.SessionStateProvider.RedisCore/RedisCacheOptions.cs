@@ -1,13 +1,13 @@
 ﻿namespace Fanex.SessionStateProvider.RedisCore
 {
-    using System;
+    using Microsoft.Extensions.Options;
 
-    public sealed class RedisCacheOptions
+    public sealed class RedisCacheOptions : IOptions<RedisCacheOptions>
     {
         public string ApplicationName { get; set; }
 
         public string ConnectionString { get; set; }
 
-        public TimeSpan RetryTimeout { get; set; }
+        RedisCacheOptions IOptions<RedisCacheOptions>.Value => this;
     }
 }

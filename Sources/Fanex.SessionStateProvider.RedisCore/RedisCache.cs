@@ -4,6 +4,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Fanex.SessionStateProvider.RedisCore.Extensions;
+    using Microsoft.Extensions.Options;
     using StackExchange.Redis;
 
     public sealed class RedisCache : ICache, IDisposable
@@ -14,8 +15,8 @@
         private volatile ConnectionMultiplexer _connection;
         private IDatabase _database;
 
-        public RedisCache(RedisCacheOptions options)
-            => _options = options ?? throw new ArgumentNullException(nameof(options));
+        public RedisCache(IOptions<RedisCacheOptions> options)
+            => _options = options?.Value ?? throw new ArgumentNullException(nameof(options));
 
         public ILocalStore Get(string key)
         {
