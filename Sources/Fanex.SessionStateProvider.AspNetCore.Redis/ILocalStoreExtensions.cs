@@ -5,34 +5,16 @@
 
     public static class ILocalStoreExtensions
     {
-        public static byte[] GetValueWithoutMarkingModified(this ILocalStore store, string key)
-        {
-            var (_, value) = store.TryGetValueWithoutMarkingModified(key);
-
-            return value;
-        }
-
-        public static List<RedisValue> ConvertToRedisValues(this ILocalStore store)
-        {
-            var result = new List<RedisValue>();
-
-            foreach (string key in store.Keys)
-            {
-                result.Add(key);
-                result.Add(store.GetValueWithoutMarkingModified(key));
-            }
-
-            return result;
-        }
-
         public static (int NumberOfModifiedKeys, List<RedisValue> Result) ConvertModifiedItemsToRedisValues(this ILocalStore store)
         {
             var result = new List<RedisValue>();
 
             foreach (var key in store.ModifiedKeys)
             {
+                var (_, value) = store.TryGetValueWithoutMarkingModified(key);
+
                 result.Add(key);
-                result.Add(store.GetValueWithoutMarkingModified(key));
+                result.Add(value);
             }
 
             return (store.ModifiedKeys.Count, result);
