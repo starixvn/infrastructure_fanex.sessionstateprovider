@@ -7,9 +7,24 @@
 
     public sealed class LocalStore : ILocalStore
     {
-        private readonly ConcurrentDictionary<string, byte[]> _store = new(StringComparer.InvariantCultureIgnoreCase);
+        private readonly ConcurrentDictionary<string, byte[]> _store;
         private readonly HashSet<string> _modifiedKeys = new(StringComparer.InvariantCultureIgnoreCase);
         private readonly HashSet<string> _deletedKeys = new(StringComparer.InvariantCultureIgnoreCase);
+
+        public LocalStore()
+        {
+            _store = new(StringComparer.InvariantCultureIgnoreCase);
+        }
+
+        public LocalStore(Dictionary<string, byte[]> data)
+        {
+            if (data is null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
+
+            _store = new(data, StringComparer.InvariantCultureIgnoreCase);
+        }
 
         public int Count => _store.Count;
 
