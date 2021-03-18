@@ -1,4 +1,4 @@
-﻿namespace Fanex.SessionStateProvider.RedisCore
+﻿namespace Fanex.SessionStateProvider.AspNetCore
 {
     using System;
     using Microsoft.Extensions.Logging;

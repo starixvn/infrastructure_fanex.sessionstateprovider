@@ -1,7 +1,7 @@
 namespace Fanex.SessionStateProvider.RedisCore.Example
 {
     using System;
-    using Fanex.SessionStateProvider.RedisCore;
+    using Fanex.SessionStateProvider.AspNetCore.Redis;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;

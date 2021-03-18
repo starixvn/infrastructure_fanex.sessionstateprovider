@@ -1,4 +1,4 @@
-﻿namespace Fanex.SessionStateProvider.RedisCore
+﻿namespace Fanex.SessionStateProvider.AspNetCore.Redis
 {
     public class SessionKeySet
     {

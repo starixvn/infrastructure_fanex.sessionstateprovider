@@ -1,8 +1,8 @@
-﻿namespace Fanex.SessionStateProvider.RedisCore
+﻿namespace Fanex.SessionStateProvider.AspNetCore
 {
     using Microsoft.AspNetCore.Http;
 
-    public static class RedisSessionExtensions
+    public static class SharedSessionExtensions
     {
         private static readonly ISerializer _serializer = new MessagePackSerializer();
 

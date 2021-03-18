@@ -1,4 +1,4 @@
-﻿namespace Fanex.SessionStateProvider.RedisCore
+﻿namespace Fanex.SessionStateProvider.AspNetCore.Redis
 {
     using System;
     using Microsoft.AspNetCore.Builder;
@@ -16,7 +16,7 @@
             }
 
             services.TryAddSingleton<ICache, RedisCache>();
-            services.TryAddTransient<ISessionStore, RedisSessionStore>();
+            services.TryAddTransient<ISessionStore, SharedSessionStore>();
             services.AddDataProtection();
 
             return services;

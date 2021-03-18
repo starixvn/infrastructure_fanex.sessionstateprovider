@@ -1,9 +1,8 @@
-﻿namespace Fanex.SessionStateProvider.RedisCore
+﻿namespace Fanex.SessionStateProvider.AspNetCore.Redis
 {
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Fanex.SessionStateProvider.RedisCore.Extensions;
     using Microsoft.Extensions.Options;
     using StackExchange.Redis;
 

@@ -1,4 +1,4 @@
-﻿namespace Fanex.SessionStateProvider.RedisCore
+﻿namespace Fanex.SessionStateProvider.AspNetCore.Redis
 {
     internal static class RedisScripts
     {

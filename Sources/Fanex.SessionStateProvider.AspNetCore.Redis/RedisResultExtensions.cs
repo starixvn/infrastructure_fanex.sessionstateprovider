@@ -1,4 +1,4 @@
-﻿namespace Fanex.SessionStateProvider.RedisCore.Extensions
+﻿namespace Fanex.SessionStateProvider.AspNetCore.Redis
 {
     using StackExchange.Redis;
 

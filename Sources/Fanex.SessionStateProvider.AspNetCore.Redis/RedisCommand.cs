@@ -1,8 +1,7 @@
-﻿namespace Fanex.SessionStateProvider.RedisCore
+﻿namespace Fanex.SessionStateProvider.AspNetCore.Redis
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Fanex.SessionStateProvider.RedisCore.Extensions;
     using StackExchange.Redis;
 
     public class RedisCommand

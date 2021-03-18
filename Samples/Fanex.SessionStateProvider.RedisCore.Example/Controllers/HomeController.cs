@@ -1,6 +1,7 @@
 ﻿namespace Fanex.SessionStateProvider.RedisCore.Example.Controllers
 {
     using System.Diagnostics;
+    using Fanex.SessionStateProvider.AspNetCore;
     using Fanex.SessionStateProvider.RedisCore.Example.Models;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;

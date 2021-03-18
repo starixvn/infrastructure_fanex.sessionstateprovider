@@ -1,17 +1,16 @@
-﻿namespace Fanex.SessionStateProvider.RedisCore
+﻿namespace Fanex.SessionStateProvider.AspNetCore
 {
     using System;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Session;
-    using Microsoft.Extensions.Caching.Distributed;
     using Microsoft.Extensions.Logging;
 
-    public class RedisSessionStore : ISessionStore
+    public class SharedSessionStore : ISessionStore
     {
         private readonly ICache _cache;
         private readonly ILoggerFactory _loggerFactory;
 
-        public RedisSessionStore(ICache cache, ILoggerFactory loggerFactory)
+        public SharedSessionStore(ICache cache, ILoggerFactory loggerFactory)
         {
             _cache = cache ?? throw new ArgumentNullException(nameof(cache));
             _loggerFactory = loggerFactory ?? throw new ArgumentNullException(nameof(loggerFactory));
@@ -34,7 +33,7 @@
                 throw new ArgumentNullException(nameof(tryEstablishSession));
             }
 
-            return new RedisSession(
+            return new SharedSession(
                 _cache,
                 sessionKey,
                 idleTimeout,

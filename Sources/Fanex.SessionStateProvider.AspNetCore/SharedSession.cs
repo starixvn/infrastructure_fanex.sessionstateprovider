@@ -1,4 +1,4 @@
-﻿namespace Fanex.SessionStateProvider.RedisCore
+﻿namespace Fanex.SessionStateProvider.AspNetCore
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +7,7 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Logging;
 
-    public class RedisSession : ISession
+    public class SharedSession : ISession
     {
         private readonly ICache _cache;
         private readonly string _sessionKey;
@@ -24,7 +24,7 @@
         private bool _isAvailable;
         private bool _isModified;
 
-        public RedisSession(
+        public SharedSession(
             ICache cache,
             string sessionKey,
             TimeSpan idleTimeout,
@@ -48,7 +48,7 @@
             _idleTimeout = idleTimeout;
             _ioTimeout = ioTimeout;
             _tryEstablishSession = tryEstablishSession ?? throw new ArgumentNullException(nameof(tryEstablishSession));
-            _logger = loggerFactory.CreateLogger<RedisSession>();
+            _logger = loggerFactory.CreateLogger<SharedSession>();
 
             _isNewSessionKey = isNewSessionKey;
 
