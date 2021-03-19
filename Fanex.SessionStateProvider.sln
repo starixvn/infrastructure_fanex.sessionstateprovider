@@ -15,15 +15,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		build.ps1 = build.ps1
 		Directory.build.props = Directory.build.props
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.SessionStateProvider.Redis.Example", "Samples\Fanex.SessionStateProvider.Redis.Example\Fanex.SessionStateProvider.Redis.Example.csproj", "{9A9052B8-7292-4FBA-8E18-3E443BB5D944}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.SessionStateProvider.RedisCore.Example", "Samples\Fanex.SessionStateProvider.RedisCore.Example\Fanex.SessionStateProvider.RedisCore.Example.csproj", "{4792FDFD-B7F5-4CC2-9604-8ABEF3420903}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.SessionStateProvider.AspNetCore.Redis.Example", "Samples\Fanex.SessionStateProvider.RedisCore.Example\Fanex.SessionStateProvider.AspNetCore.Redis.Example.csproj", "{4792FDFD-B7F5-4CC2-9604-8ABEF3420903}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.SessionStateProvider.AspNetCore", "Sources\Fanex.SessionStateProvider.AspNetCore\Fanex.SessionStateProvider.AspNetCore.csproj", "{95A63CA3-8E6C-45BB-B630-3A299FDEB885}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.SessionStateProvider.AspNetCore", "Sources\Fanex.SessionStateProvider.AspNetCore\Fanex.SessionStateProvider.AspNetCore.csproj", "{95A63CA3-8E6C-45BB-B630-3A299FDEB885}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.SessionStateProvider.AspNetCore.Redis", "Sources\Fanex.SessionStateProvider.AspNetCore.Redis\Fanex.SessionStateProvider.AspNetCore.Redis.csproj", "{4CB397F3-8537-45BE-91C9-321D62206DE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.SessionStateProvider.AspNetCore.Redis", "Sources\Fanex.SessionStateProvider.AspNetCore.Redis\Fanex.SessionStateProvider.AspNetCore.Redis.csproj", "{4CB397F3-8537-45BE-91C9-321D62206DE8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.SessionStateProvider.AspNetCore.StateServer", "Fanex.SessionStateProvider.AspNetCore.StateServer\Fanex.SessionStateProvider.AspNetCore.StateServer.csproj", "{CA5CE312-A0FB-46CA-9FFA-CE98AC21A2B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +54,10 @@ Global
 		{4CB397F3-8537-45BE-91C9-321D62206DE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CB397F3-8537-45BE-91C9-321D62206DE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CB397F3-8537-45BE-91C9-321D62206DE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA5CE312-A0FB-46CA-9FFA-CE98AC21A2B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA5CE312-A0FB-46CA-9FFA-CE98AC21A2B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA5CE312-A0FB-46CA-9FFA-CE98AC21A2B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA5CE312-A0FB-46CA-9FFA-CE98AC21A2B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +68,7 @@ Global
 		{4792FDFD-B7F5-4CC2-9604-8ABEF3420903} = {51AE1E9C-2C06-4C96-ADBE-15D7302F6A00}
 		{95A63CA3-8E6C-45BB-B630-3A299FDEB885} = {A701A1BB-5E45-4884-9C94-8AB1D22A5E2C}
 		{4CB397F3-8537-45BE-91C9-321D62206DE8} = {A701A1BB-5E45-4884-9C94-8AB1D22A5E2C}
+		{CA5CE312-A0FB-46CA-9FFA-CE98AC21A2B6} = {A701A1BB-5E45-4884-9C94-8AB1D22A5E2C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4A3EEE8D-436B-4748-9E85-F6244A29ED21}

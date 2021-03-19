@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Fanex.SessionStateProvider.RedisCore.Example": {
+    "Fanex.SessionStateProvider.AspNetCore.Redis.Example": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

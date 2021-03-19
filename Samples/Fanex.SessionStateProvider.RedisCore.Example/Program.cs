@@ -1,4 +1,4 @@
-namespace Fanex.SessionStateProvider.RedisCore.Example
+namespace Fanex.SessionStateProvider.AspNetCore.Redis.Example
 {
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;

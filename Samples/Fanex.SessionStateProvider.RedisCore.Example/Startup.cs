@@ -1,4 +1,4 @@
-namespace Fanex.SessionStateProvider.RedisCore.Example
+namespace Fanex.SessionStateProvider.AspNetCore.Redis.Example
 {
     using System;
     using Fanex.SessionStateProvider.AspNetCore.Redis;
@@ -27,7 +27,7 @@ namespace Fanex.SessionStateProvider.RedisCore.Example
             services.AddRedisSession(
                 redisCacheOptions =>
                 {
-                    redisCacheOptions.ApplicationName = "Fanex.SessionStateProvider.RedisCore.Example";
+                    redisCacheOptions.ApplicationName = "Fanex.SessionStateProvider.AspNetCore.Redis.Example";
                     redisCacheOptions.ConnectionString = "ha.nexdev.net:6379";
                 },
                 sessionOptions =>

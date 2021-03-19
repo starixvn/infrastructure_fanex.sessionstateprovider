@@ -1,4 +1,4 @@
-﻿namespace Fanex.SessionStateProvider.RedisCore.Example.Models
+﻿namespace Fanex.SessionStateProvider.AspNetCore.Redis.Example.Models
 {
     public class Account
     {
