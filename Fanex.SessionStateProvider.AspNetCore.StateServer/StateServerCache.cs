@@ -61,7 +61,8 @@
 
             var formData = new
             {
-                Store = store,
+                ModifiedItems = store.GetModifiedItems(),
+                DeletedKeys = store.GetDeletedKeys(),
                 SessionTimeout = sessionTimeout
             };
             var requestUri = new Uri(_httpClient.BaseAddress, $"api/set/{key}");

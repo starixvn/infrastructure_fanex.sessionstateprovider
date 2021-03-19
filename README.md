@@ -30,4 +30,5 @@
 
 ### Disadvantages
 
+- Only work with primary types, string, and some .Net built in types, because of the way Asp.Net SessionStateModule serializes data
 - The performance of Asp.Net Core apps will not really good, as the session accesses have to go through an intermediary layer

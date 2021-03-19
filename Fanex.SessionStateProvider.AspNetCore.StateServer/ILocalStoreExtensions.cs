@@ -5,7 +5,7 @@
 
     public static class ILocalStoreExtensions
     {
-        public static (int NumberOfModifiedKeys, Dictionary<string, byte[]> Result) GetModifiedItems(this ILocalStore store)
+        public static Dictionary<string, byte[]> GetModifiedItems(this ILocalStore store)
         {
             var result = new Dictionary<string, byte[]>(StringComparer.InvariantCultureIgnoreCase);
 
@@ -16,10 +16,10 @@
                 result[key] = value;
             }
 
-            return (store.ModifiedKeys.Count, result);
+            return result;
         }
 
-        public static (int NumberOfDeletedKeys, List<string> Result) GetDeletedKeys(this ILocalStore store)
+        public static List<string> GetDeletedKeys(this ILocalStore store)
         {
             var result = new List<string>();
 
@@ -28,7 +28,7 @@
                 result.Add(key);
             }
 
-            return (store.DeletedKeys.Count, result);
+            return result;
         }
     }
 }
