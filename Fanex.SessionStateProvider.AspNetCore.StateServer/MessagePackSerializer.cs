@@ -1,10 +1,10 @@
-﻿namespace Fanex.SessionStateProvider.AspNetCore
+﻿namespace Fanex.SessionStateProvider.AspNetCore.StateServer
 {
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using Serializer = MessagePack.MessagePackSerializer.Typeless;
+    using Serializer = MessagePack.MessagePackSerializer;
 
     public class MessagePackSerializer : ISerializer
     {
@@ -18,7 +18,7 @@
         {
             try
             {
-                return (T)Serializer.Deserialize(binaryData);
+                return Serializer.Deserialize<T>(binaryData);
             }
             catch
             {
@@ -30,7 +30,7 @@
         {
             try
             {
-                return (T)await Serializer.DeserializeAsync(readStream, cancellationToken: cancellationToken);
+                return await Serializer.DeserializeAsync<T>(readStream, cancellationToken: cancellationToken);
             }
             catch
             {

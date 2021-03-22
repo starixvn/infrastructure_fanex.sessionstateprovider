@@ -4,7 +4,7 @@
 
     public static class SharedSessionExtensions
     {
-        private static readonly ISerializer _serializer = new MessagePackSerializer();
+        private static readonly ISerializer _serializer = new TypelessMessagePackSerializer();
 
         public static void Set<T>(this ISession session, string key, T value)
         {
