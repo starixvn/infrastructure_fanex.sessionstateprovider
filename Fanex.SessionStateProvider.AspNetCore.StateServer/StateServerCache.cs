@@ -59,22 +59,23 @@
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var formData = new
+            var sessionCommit = new
             {
                 ModifiedItems = store.GetModifiedItems(),
                 DeletedKeys = store.GetDeletedKeys(),
                 SessionTimeout = sessionTimeout
             };
             var requestUri = new Uri(_httpClient.BaseAddress, $"api/set/{key}");
-            StreamContent requestContent;
+            ByteArrayContent requestContent;
 
-            using (var memoryStream = new MemoryStream())
+            using (var serializationStream = new MemoryStream())
             {
-                await _serializer.SerializeAsync(memoryStream, formData, cancellationToken);
-                requestContent = new StreamContent(memoryStream);
+                await _serializer.SerializeAsync(serializationStream, sessionCommit, cancellationToken);
+
+                requestContent = new ByteArrayContent(serializationStream.ToArray());
+                requestContent.Headers.ContentType = new MediaTypeHeaderValue(MimeType);
             }
 
-            requestContent.Headers.ContentType = new MediaTypeHeaderValue(MimeType);
             await _httpClient.PostAsync(requestUri, requestContent, cancellationToken);
         }
     }

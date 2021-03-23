@@ -11,6 +11,11 @@
             config.Filters.Add(new GlobalExceptionFilterAttribute());
             config.Formatters.Add(new MessagePackFormatter());
             config.MapHttpAttributeRoutes();
+
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{action}/{id}",
+                defaults: new { controller = "Session" });
         }
     }
 }

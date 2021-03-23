@@ -8,6 +8,7 @@
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
     using MessagePack;
+    using MessagePack.Resolvers;
 
     public class MessagePackFormatter : MediaTypeFormatter
     {
@@ -39,7 +40,11 @@
                 throw new ArgumentNullException(nameof(writeStream));
             }
 
-            return MessagePackSerializer.SerializeAsync(type, writeStream, value);
+            return MessagePackSerializer.SerializeAsync(
+                type,
+                writeStream,
+                value,
+                ContractlessStandardResolver.Options);
         }
 
         public override async Task<object> ReadFromStreamAsync(
@@ -58,7 +63,7 @@
                 throw new ArgumentNullException(nameof(readStream));
             }
 
-            var value = await MessagePackSerializer.DeserializeAsync(type, readStream);
+            var value = await MessagePackSerializer.DeserializeAsync(type, readStream, ContractlessStandardResolver.Options);
 
             return value;
         }

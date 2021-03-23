@@ -36,9 +36,12 @@
         {
             var result = new Dictionary<string, byte[]>();
 
-            foreach (string key in session.Items.Keys)
+            if (session != null)
             {
-                result[key] = Serializer.Serialize(session.Items[key]);
+                foreach (string key in session.Items.Keys)
+                {
+                    result[key] = Serializer.Serialize(session.Items[key]);
+                }
             }
 
             return result;
@@ -64,6 +67,8 @@
                 out object lockId,
                 out _);
             var newSession = session == null && !locked;
+
+            session ??= sessionStateStore.CreateNewStoreData(context, (int)sessionCommit.SessionTimeout.TotalSeconds);
 
             UpdateSession(session, sessionCommit);
             sessionStateStore.SetAndReleaseItemExclusive(context, sessionId, session, lockId, newSession);
