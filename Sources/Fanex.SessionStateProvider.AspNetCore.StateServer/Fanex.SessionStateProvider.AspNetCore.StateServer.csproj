@@ -6,6 +6,6 @@
         <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\Sources\Fanex.SessionStateProvider.AspNetCore\Fanex.SessionStateProvider.AspNetCore.csproj" />
+        <ProjectReference Include="..\Fanex.SessionStateProvider.AspNetCore\Fanex.SessionStateProvider.AspNetCore.csproj" />
     </ItemGroup>
 </Project>
