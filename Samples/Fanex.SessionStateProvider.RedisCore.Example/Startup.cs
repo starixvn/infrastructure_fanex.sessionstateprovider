@@ -17,7 +17,6 @@ namespace Fanex.SessionStateProvider.AspNetCore.Redis.Example
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
 #pragma warning disable S2325 // Methods and properties that don't access instance data should be static
 
         public void ConfigureServices(IServiceCollection services)
@@ -37,7 +36,6 @@ namespace Fanex.SessionStateProvider.AspNetCore.Redis.Example
             services.AddControllersWithViews();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

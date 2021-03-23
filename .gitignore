@@ -338,5 +338,4 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
-
-lib
+Samples/Fanex.SessionStateProvider.Redis.Example/lib/

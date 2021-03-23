@@ -30,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.SessionStateProvider.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.SessionStateProvider.StateServerApi", "Sources\Fanex.SessionStateProvider.StateServerApi\Fanex.SessionStateProvider.StateServerApi.csproj", "{8E4AE5EC-2060-4435-B7FA-24FD96A5DF3D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.SessionStateProvider.AspNetCore.StateServer.Example", "Samples\Fanex.SessionStateProvider.AspNetCore.StateServer.Example\Fanex.SessionStateProvider.AspNetCore.StateServer.Example.csproj", "{3C22F398-BBE2-4C19-9785-8203A8E6BAC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,10 @@ Global
 		{8E4AE5EC-2060-4435-B7FA-24FD96A5DF3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E4AE5EC-2060-4435-B7FA-24FD96A5DF3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E4AE5EC-2060-4435-B7FA-24FD96A5DF3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C22F398-BBE2-4C19-9785-8203A8E6BAC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C22F398-BBE2-4C19-9785-8203A8E6BAC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C22F398-BBE2-4C19-9785-8203A8E6BAC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C22F398-BBE2-4C19-9785-8203A8E6BAC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +82,7 @@ Global
 		{4CB397F3-8537-45BE-91C9-321D62206DE8} = {A701A1BB-5E45-4884-9C94-8AB1D22A5E2C}
 		{CA5CE312-A0FB-46CA-9FFA-CE98AC21A2B6} = {A701A1BB-5E45-4884-9C94-8AB1D22A5E2C}
 		{8E4AE5EC-2060-4435-B7FA-24FD96A5DF3D} = {A701A1BB-5E45-4884-9C94-8AB1D22A5E2C}
+		{3C22F398-BBE2-4C19-9785-8203A8E6BAC1} = {51AE1E9C-2C06-4C96-ADBE-15D7302F6A00}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4A3EEE8D-436B-4748-9E85-F6244A29ED21}
