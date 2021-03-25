@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Filters\GlobalExceptionFilterAttribute.cs" />
-    <Compile Include="App_Start\Formatters\MessagePackFormatter.cs" />
+    <Compile Include="App_Start\Formatters\ContractlessMessagePackFormatter.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Global.asax.cs">

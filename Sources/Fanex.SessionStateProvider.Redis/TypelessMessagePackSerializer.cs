@@ -2,7 +2,7 @@
 {
     using Serializer = MessagePack.MessagePackSerializer.Typeless;
 
-    public class MessagePackSerializer : ISerializer
+    public class TypelessMessagePackSerializer : ISerializer
     {
         public byte[] Serialize(object obj)
             => Serializer.Serialize(obj);

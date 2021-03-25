@@ -90,7 +90,7 @@
                 }
             }
 
-            return new MessagePackSerializer();
+            return new TypelessMessagePackSerializer();
         }
 
         private static string GetStringValue(string attributeName, NameValueCollection config)

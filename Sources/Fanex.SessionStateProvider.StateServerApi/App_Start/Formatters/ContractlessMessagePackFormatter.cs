@@ -10,11 +10,11 @@
     using MessagePack;
     using MessagePack.Resolvers;
 
-    public class MessagePackFormatter : MediaTypeFormatter
+    public class ContractlessMessagePackFormatter : MediaTypeFormatter
     {
         public const string MimeType = "application/x-msgpack";
 
-        public MessagePackFormatter()
+        public ContractlessMessagePackFormatter()
             => SupportedMediaTypes.Add(new MediaTypeHeaderValue(MimeType));
 
         public override bool CanReadType(Type type)

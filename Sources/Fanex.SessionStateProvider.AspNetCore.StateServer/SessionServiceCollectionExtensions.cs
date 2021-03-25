@@ -17,7 +17,7 @@
                 throw new ArgumentNullException(nameof(services));
             }
 
-            services.AddSingleton<ISerializer, MessagePackSerializer>();
+            services.AddSingleton<ISerializer, ContractlessMessagePackSerializer>();
             services.AddHttpClient<ICache, StateServerCache>((serviceProvider, httpClient) =>
             {
                 var stateServerCacheOptions = serviceProvider.GetRequiredService<IOptions<StateServerCacheOptions>>().Value;

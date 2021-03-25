@@ -11,7 +11,7 @@
         <DefaultLanguage>en-US</DefaultLanguage>
         <LangVersion>latest</LangVersion>
         <IncludeSymbols>false</IncludeSymbols>
-        <Version>0.0.1-beta1</Version>
+        <Version>0.0.1-beta2</Version>
     </PropertyGroup>
     <PropertyGroup>
         <NoWarn>AD0001</NoWarn>

@@ -7,7 +7,7 @@
 
     using Serializer = MessagePack.MessagePackSerializer;
 
-    public class MessagePackSerializer : ISerializer
+    public class ContractlessMessagePackSerializer : ISerializer
     {
         public byte[] Serialize<T>(T obj)
             => Serializer.Serialize(obj, ContractlessStandardResolver.Options);

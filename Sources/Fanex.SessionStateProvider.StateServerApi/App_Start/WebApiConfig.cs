@@ -9,7 +9,7 @@
         public static void Register(HttpConfiguration config)
         {
             config.Filters.Add(new GlobalExceptionFilterAttribute());
-            config.Formatters.Add(new MessagePackFormatter());
+            config.Formatters.Add(new ContractlessMessagePackFormatter());
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
