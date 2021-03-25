@@ -5,6 +5,8 @@
 
     public class SessionCommit
     {
+        public string SessionId { get; set; }
+
         public Dictionary<string, byte[]> ModifiedItems { get; set; }
 
         public List<string> DeletedKeys { get; set; }

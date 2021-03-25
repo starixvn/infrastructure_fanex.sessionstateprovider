@@ -44,6 +44,7 @@
 
         public static RedisCommand CreateSetCommand(
             SessionKeySet keySet,
+            string sessionId,
             ILocalStore store,
             int sessionTimeout)
         {
@@ -52,8 +53,8 @@
                 return null;
             }
 
-            const int metadataLength = 7;
-            const int metadataLastIndexInLua = 8;
+            const int metadataLength = 8;
+            const int metadataLastIndexInLua = 9;
 
             var (numberOfDeletedItems, deletedItems) = store.ConvertDeletedItemsToRedisValues();
             var (numberOfModifiedItems, modifiedItems) = store.ConvertModifiedItemsToRedisValues();
@@ -65,6 +66,7 @@
             };
             var values = new List<RedisValue>
             {
+                sessionId,
                 sessionTimeout,
                 numberOfDeletedItems,
                 metadataLastIndexInLua, // The first position of deleted items in the argument list. LUA script's list is 1-based index, then it goes 9 insted of 8.

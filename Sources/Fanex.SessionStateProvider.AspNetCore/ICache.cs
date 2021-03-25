@@ -6,12 +6,13 @@
 
     public interface ICache
     {
-        ILocalStore Get(string key);
+        (string SessionId, ILocalStore Store) Get(string key);
 
-        Task<ILocalStore> GetAsync(string key, CancellationToken cancellationToken = default);
+        Task<(string SessionId, ILocalStore Store)> GetAsync(string key, CancellationToken cancellationToken = default);
 
         Task SetAsync(
             string key,
+            string sessionId,
             ILocalStore store,
             TimeSpan sessionTimeout,
             CancellationToken cancellationToken = default);

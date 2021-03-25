@@ -17,7 +17,7 @@
         public RedisCache(IOptions<RedisCacheOptions> options)
             => _options = options?.Value ?? throw new ArgumentNullException(nameof(options));
 
-        public ILocalStore Get(string key)
+        public (string SessionId, ILocalStore Store) Get(string key)
         {
             var command = RedisCommand.CreateGetCommand(new SessionKeySet(_options.ApplicationName, key));
             var rawResult = (RedisResult[])Eval(command);
@@ -25,7 +25,7 @@
             return rawResult.TryParseToLocalStore();
         }
 
-        public async Task<ILocalStore> GetAsync(string key, CancellationToken cancellationToken = default)
+        public async Task<(string SessionId, ILocalStore Store)> GetAsync(string key, CancellationToken cancellationToken = default)
         {
             var command = RedisCommand.CreateGetCommand(new SessionKeySet(_options.ApplicationName, key));
             var rawResult = (RedisResult[])await EvalAsync(command, cancellationToken).ConfigureAwait(false);
@@ -40,12 +40,20 @@
 
         public Task SetAsync(
             string key,
+            string sessionId,
             ILocalStore store,
             TimeSpan sessionTimeout,
             CancellationToken cancellationToken = default)
-            => EvalAsync(
-                RedisCommand.CreateSetCommand(new SessionKeySet(_options.ApplicationName, key), store, (int)sessionTimeout.TotalSeconds),
-                cancellationToken);
+        {
+            var keySet = new SessionKeySet(_options.ApplicationName, key);
+            var command = RedisCommand.CreateSetCommand(
+                keySet,
+                sessionId,
+                store,
+                (int)sessionTimeout.TotalSeconds);
+
+            return EvalAsync(command, cancellationToken);
+        }
 
         private RedisResult Eval(RedisCommand command)
         {

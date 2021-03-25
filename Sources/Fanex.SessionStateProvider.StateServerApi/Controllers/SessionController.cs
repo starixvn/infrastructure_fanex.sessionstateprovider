@@ -9,7 +9,7 @@
     public class SessionController : ApiController
     {
         [HttpGet]
-        public Dictionary<string, byte[]> Get(string id)
+        public SessionTransitPayload Get(string id)
             => SessionReflector.GetSession(HttpContext.Current, id);
 
         [HttpGet]

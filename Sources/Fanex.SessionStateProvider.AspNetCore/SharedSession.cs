@@ -126,6 +126,7 @@
                 accessingCacheTokenSource.Token.ThrowIfCancellationRequested();
                 await _cache.SetAsync(
                     _sessionKey,
+                    _sessionId,
                     _store,
                     _idleTimeout,
                     accessingCacheTokenSource.Token);
@@ -156,9 +157,9 @@
             {
                 cancellationTokenSource.Token.ThrowIfCancellationRequested();
 
-                var storedData = await _cache.GetAsync(_sessionKey, cancellationTokenSource.Token);
+                var (_, store) = await _cache.GetAsync(_sessionKey, cancellationTokenSource.Token);
 
-                if (storedData == null)
+                if (store == null)
                 {
                     _logger.SessionStarted(_sessionKey, Id);
                 }
@@ -209,11 +210,12 @@
             {
                 accessingCacheTokenSource.Token.ThrowIfCancellationRequested();
 
-                var newStore = await _cache.GetAsync(_sessionKey, accessingCacheTokenSource.Token);
+                var (sessionId, store) = await _cache.GetAsync(_sessionKey, accessingCacheTokenSource.Token);
 
-                if (newStore != null)
+                if (sessionId != null && store != null)
                 {
-                    _store = newStore;
+                    _sessionId = sessionId;
+                    _store = store;
                 }
                 else
                 {
@@ -251,11 +253,12 @@
 
             try
             {
-                var newStore = _cache.Get(_sessionKey);
+                var (sessionId, store) = _cache.Get(_sessionKey);
 
-                if (newStore != null)
+                if (sessionId != null && store != null)
                 {
-                    _store = newStore;
+                    _sessionId = sessionId;
+                    _store = store;
                 }
                 else
                 {

@@ -1,7 +1,6 @@
 ﻿namespace Fanex.SessionStateProvider.AspNetCore.StateServer
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Net.Http;
     using System.Net.Http.Headers;
@@ -21,10 +20,10 @@
             _serializer = serializer;
         }
 
-        public ILocalStore Get(string key)
+        public (string SessionId, ILocalStore Store) Get(string key)
             => Task.Run(() => GetAsync(key)).GetAwaiter().GetResult();
 
-        public async Task<ILocalStore> GetAsync(string key, CancellationToken cancellationToken = default)
+        public async Task<(string SessionId, ILocalStore Store)> GetAsync(string key, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
@@ -34,9 +33,12 @@
             if (response.IsSuccessStatusCode)
             {
                 var responseResult = await response.Content.ReadAsStreamAsync();
-                var result = await _serializer.DeserializeAsync<Dictionary<string, byte[]>>(responseResult, cancellationToken);
+                var result = await _serializer.DeserializeAsync<SessionTransitPayload>(responseResult, cancellationToken);
 
-                return new LocalStore(result);
+                if (result != null)
+                {
+                    return (result.SessionId, new LocalStore(result.Data));
+                }
             }
 
             return default;
@@ -53,6 +55,7 @@
 
         public async Task SetAsync(
             string key,
+            string sessionId,
             ILocalStore store,
             TimeSpan sessionTimeout,
             CancellationToken cancellationToken = default)
@@ -61,6 +64,7 @@
 
             var sessionCommit = new
             {
+                SessionId = sessionId,
                 ModifiedItems = store.GetModifiedItems(),
                 DeletedKeys = store.GetDeletedKeys(),
                 SessionTimeout = sessionTimeout

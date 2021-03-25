@@ -1,5 +1,6 @@
 ﻿namespace Fanex.SessionStateProvider.StateServerApi.Helpers
 {
+    using System;
     using System.Collections.Generic;
     using System.Reflection;
     using System.Web;
@@ -10,9 +11,10 @@
 
     public static class SessionReflector
     {
+        private const string SessionIdKey = "AspNetCoreSessionId";
         private static readonly FieldInfo SessionStoreFieldInfo = typeof(SessionStateModule).GetField("_store", BindingFlags.NonPublic | BindingFlags.Instance);
 
-        public static Dictionary<string, byte[]> GetSession(HttpContext context, string sessionId)
+        public static SessionTransitPayload GetSession(HttpContext context, string sessionId)
         {
             var sessionStateStore = ReflectSessionStateStore(context);
 
@@ -32,19 +34,25 @@
             return MapSession(session);
         }
 
-        private static Dictionary<string, byte[]> MapSession(SessionStateStoreData session)
+        private static SessionTransitPayload MapSession(SessionStateStoreData session)
         {
-            var result = new Dictionary<string, byte[]>();
-
-            if (session != null)
+            if (session == null)
             {
-                foreach (string key in session.Items.Keys)
+                return default;
+            }
+
+            var sessionId = session.Items[SessionIdKey] as string;
+            var data = new Dictionary<string, byte[]>();
+
+            foreach (string key in session.Items.Keys)
+            {
+                if (!key.Equals(SessionIdKey, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    result[key] = Serializer.Serialize(session.Items[key]);
+                    data[key] = Serializer.Serialize(session.Items[key]);
                 }
             }
 
-            return result;
+            return new(sessionId, data);
         }
 
         public static void Refresh(HttpContext context, string sessionId)
@@ -92,6 +100,7 @@
                 }
             }
 
+            session.Items[SessionIdKey] = sessionCommit.SessionId;
             session.Timeout = (int)sessionCommit.SessionTimeout.TotalMinutes;
         }
 

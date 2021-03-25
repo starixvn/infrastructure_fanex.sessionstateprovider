@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="Helpers\SessionReflector.cs" />
     <Compile Include="Models\SessionCommit.cs" />
+    <Compile Include="Models\SessionTransitPayload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
